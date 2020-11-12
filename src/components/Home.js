@@ -65,6 +65,7 @@ const ListedI = styled.li`
 
 function Home() {
   const [Classes, setClasses] = useState([]);
+  const [fullClasses, setFullClasses] = useState([])
   const [search, setSearch] = useState("");
   const [firstName, setFirstName] = useState("");
   useEffect(() => {
@@ -78,23 +79,31 @@ function Home() {
       .catch(error => {
         console.log("Unable to retrieve data", error);
       });
+      axiosWithAuth()
+      .get("/api/classes")
+      .then(response => {
+        setClasses(response.data)
+        setFullClasses(response.data)
+      }).catch(error => {
+        console.log("Data could not be retrieved", error)
+      })
   }, []);
 
   useEffect(() => {
     axiosWithAuth()
-      .get("/api/classes")
-      .then(response => {
-        console.log("This is the class list", response);
-        const data = response.data;
-        const result = data.filter(classes =>
-          classes.name.toLowerCase().includes(search.toLowerCase())
-        );
-        console.log(result);
-        setClasses(result);
-      })
-      .catch(error => {
-        console.log("Data could not be retrieved", error);
-      });
+    .get("/api/classes")
+    .then(response => {
+      console.log("This is the class list", response);
+      const data = response.data;
+      const result = data.filter(classes =>
+        classes.name.toLowerCase().includes(search.toLowerCase()) 
+      );
+      console.log(result);
+      setClasses(result);
+    })
+    .catch(error => {
+      console.log("Data could not be retrieved", error);
+    });
   }, [search]);
 
   const handleInputChange = event => {
@@ -125,10 +134,10 @@ function Home() {
         </Listed>
       </section>
       <div className="select-bar">
-        <Select type="checkbox" classNamePrefix="react-select" options={classTypes} isMulti />
-        <Select  classNamePrefix="react-select" options={ClassDuration} isMulti />
-        <Select classNamePrefix="react-select" options={ClassTime} isMulti />
-        <Select classNamePrefix="react-select" options={ClassLevel} isMulti />
+        <Select type="checkbox" classNamePrefix="react-select" placeholder="class type" options={classTypes} isMulti />
+        <Select  classNamePrefix="react-select" placeholder="class duration" options={ClassDuration} isMulti />
+        <Select classNamePrefix="react-select" placeholder="class time" options={ClassTime} isMulti />
+        <Select classNamePrefix="react-select" placeholder="class difficulty" options={ClassLevel} isMulti />
       </div>
       <div className="container">
         <div className="class-list">

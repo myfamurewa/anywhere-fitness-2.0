@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axiosWithAuth from "./clients/API/axiosWithAuth";
 import mountainyoga from "./clients/img/mountainyoga.jpg"
+import boxer from "./clients/img/boxing.jpg"
+
 
 export default function ClassCards(props) {
 
@@ -72,7 +74,10 @@ export default function ClassCards(props) {
     font-weight: bold;
     padding: 0 4%;
   `;
-
+const photos = {
+  "boxing": boxer,
+  "yoga": mountainyoga,
+}
 const [editing, setEditing] = useState(false);
 const [classToEdit, setClassToEdit] = useState();
 
@@ -100,6 +105,7 @@ const Reservaton = event => {
         console.log(res.data)
     })
 }
+
 
 
   return (
