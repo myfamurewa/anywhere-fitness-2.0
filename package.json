@@ -6,10 +6,18 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
+    "formik": "^2.2.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^4.4.8",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.0",
-    "web-vitals": "^0.2.4"
+    "react-select": "^3.0.8",
+    "styled-components": "^4.4.1",
+    "web-vitals": "^0.2.4",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
