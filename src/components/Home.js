@@ -65,7 +65,6 @@ const ListedI = styled.li`
 
 function Home() {
   const [Classes, setClasses] = useState([]);
-  const [fullClasses, setFullClasses] = useState([])
   const [search, setSearch] = useState("");
   const [firstName, setFirstName] = useState("");
   useEffect(() => {
@@ -83,7 +82,6 @@ function Home() {
       .get("/api/classes")
       .then(response => {
         setClasses(response.data)
-        setFullClasses(response.data)
       }).catch(error => {
         console.log("Data could not be retrieved", error)
       })

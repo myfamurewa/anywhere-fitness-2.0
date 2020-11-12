@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "./clients/API/axiosWithAuth";
-
+import Carousel from 'react-elastic-carousel'
 export default function Reservations(){
     const [Reservation, setReservation] = useState([]);
     const workouts = []
@@ -35,18 +35,27 @@ export default function Reservations(){
     return (
         <>
         <h1>Your Reservations</h1>
-        <div className="reservations">
+        {/* <div className="reservations"> */}
+        <Carousel itemsToShow={1}>
         {Reservation.map((workout, index) =>{
-            console.log("mapped workout", workout)
            return(
-            <div className="reservation">
+            <div key={index} className="reservation">
+            <div className="circle">
             <h2>{workout.data.type}</h2>
+            </div>
+            <div className="content">
             <h3>{workout.data.name}</h3>
-            <p>{workout.data.startTime}</p>
+            {workout.data.days.map(day => {
+              return(<span>{day}s  at {workout.data.startTime}</span>)
+            })}
+            <br></br>
+            <br></br>
+            </div>
             </div>
            );
         })}
-        </div>
+        </Carousel>
+        {/* </div> */}
         </>
     )
 }
