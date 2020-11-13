@@ -6,7 +6,7 @@ import styled from "styled-components";
 import Reservations from "./Reservations";
 import {Link} from "react-router-dom"
 import Map from "./Map"
-import Pagination from './Pagination'
+// import Pagination from './Pagination'
 
 const classTypes = [
   { label: "Yoga", value: 1 },
@@ -62,8 +62,8 @@ function Home() {
   const [Classes, setClasses] = useState([]);
   const [search, setSearch] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(5);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage, setPostsPerPage] = useState(5);
   useEffect(() => {
     axiosWithAuth()
       .get("/api/client/profile")
@@ -101,13 +101,13 @@ function Home() {
     });
   }, [search]);
 
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentClasses = Classes.slice(indexOfFirstPost, indexOfLastPost)
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentClasses = Classes.slice(indexOfFirstPost, indexOfLastPost)
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+  // const paginate = (pageNumber) => {
+  //   setCurrentPage(pageNumber)
+  // }
   const handleInputChange = event => {
     setSearch(event.target.value);
   };
@@ -146,7 +146,7 @@ function Home() {
           {Classes.map((clas, index) => {
             return (
               <ClassCards
-                classes={currentClasses}
+                classes={Classes}
                 setClasses={setClasses}
                 key={index}
                 clas={clas}
@@ -154,7 +154,7 @@ function Home() {
               />
             );
           })}
-          <Pagination postPerPage={postPerPage} totalPosts={Classes.length} paginate={paginate}/>
+          {/* <Pagination postsPerPage={postsPerPage} totalPosts={Classes.length} paginate={paginate}/> */}
         </div>
           <Map />
         </div>
