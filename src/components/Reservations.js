@@ -46,7 +46,7 @@ export default function Reservations(){
             <div className="content">
             <h3>{workout.data.name}</h3>
             {workout.data.days.map(day => {
-              return(<span>{day}s  at {workout.data.startTime}</span>)
+              return(<span>{day}s  at {workout.data.startTime}pm</span>)
             })}
             <br></br>
             <br></br>
