@@ -16,7 +16,6 @@ export default function Reservations(){
                 .get(`/api/classes/${item.classId}`)
                 .then(res => {
                     workouts.push(res)
-                    console.log("These are the workouts", workouts)
                  setReservation([...workouts, res])
                  })
                 
